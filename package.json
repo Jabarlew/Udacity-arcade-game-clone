@@ -20,6 +20,8 @@
   "browserslist": [
     "last 4 versions",
     "ie 11"
-  ]
+  ],
+  "devDependencies": {
+    "browser-sync": "^2.23.6"
+  }
 }
-
