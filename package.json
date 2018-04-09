@@ -1,0 +1,25 @@
+{
+  "name": "udacity-arcade-game-clone",
+  "version": "0.0.1",
+  "description": "Third project made for udacity. This time im asked to create clone of popular retro game 'Frogger'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jabarlew/Udacity-arcade-game-clone.git"
+  },
+  "keywords": [],
+  "author": "Bartosz Lewandowski <barlewdesign@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jabarlew/Udacity-arcade-game-clone/issues"
+  },
+  "homepage": "https://github.com/Jabarlew/Udacity-arcade-game-clone#readme",
+  "browserslist": [
+    "last 4 versions",
+    "ie 11"
+  ]
+}
+
