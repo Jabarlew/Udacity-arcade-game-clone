@@ -4,6 +4,8 @@
   "description": "Third project made for udacity. This time im asked to create clone of popular retro game 'Frogger'",
   "main": "index.js",
   "scripts": {
+    "start": "browser-sync start -s 'docroot' -f 'docroot'",
+    "ngrok": "ngrok http 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +24,7 @@
     "ie 11"
   ],
   "devDependencies": {
-    "browser-sync": "^2.23.6"
+    "browser-sync": "^2.23.6",
+    "ngrok": "^3.0.1"
   }
 }
