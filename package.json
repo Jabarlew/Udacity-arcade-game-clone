@@ -26,5 +26,8 @@
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "ngrok": "^3.0.1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
   }
 }
