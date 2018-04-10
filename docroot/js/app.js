@@ -33,6 +33,10 @@ class Player {
   render() {
 
   }
+
+  handleInput() {
+
+  }
 }
 
 
