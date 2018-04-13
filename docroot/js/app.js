@@ -26,12 +26,15 @@ class Player {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.player = 'images/char-cartman-fat.png'
   }
   update() {
 
   }
   render() {
-
+    Player.prototype.render = function () {
+      ctx.drawImage(Resources.get(this.player), this.x, this.y);
+    };
   }
 
   handleInput() {
@@ -43,8 +46,14 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [new Enemy(), new Enemy(), new Enemy()];
-const player = new Player();
+let allEnemies = [];
+const enemyLocationY = [63, 147, 230];
+const player = new Player(202, 410);
+
+enemyLocationY.forEach(locationY => {
+  enemy = new Enemy (0, locationY, 150);
+  allEnemies.push(enemy);
+})
 
 
 // This listens for key presses and sends the keys to your
