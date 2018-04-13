@@ -2,17 +2,18 @@
 var Enemy = function (x, y, v) {
   this.x = x;
   this.y = y;
-  this.v = v;
+  this.v = Math.floor((Math.random() * 500) + 300);
   this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
-  this.v = Math.floor((Math.random() * 500) + 100);
   this.x += this.v * dt;
+
   if (this.x > 505) {
     this.x = -100;
+
   }
 
 
@@ -65,8 +66,8 @@ class Player {
 let allEnemies = [];
 const enemyLocationY = [63, 147, 230];
 const player = new Player(202, 410);
-
 enemyLocationY.forEach(locationY => {
+
  let enemy = new Enemy (0, locationY, 150);
   allEnemies.push(enemy);
 })
