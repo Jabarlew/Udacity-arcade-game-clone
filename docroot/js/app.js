@@ -16,7 +16,7 @@ Enemy.prototype.update = function (dt) {
 
   if (this.x > 505) {
     this.x = -100;
-
+    this.v = Enemy.getRandomVelocity();
   }
 
 
