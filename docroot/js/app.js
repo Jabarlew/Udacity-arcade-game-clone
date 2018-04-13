@@ -2,10 +2,13 @@
 var Enemy = function (x, y, v) {
   this.x = x;
   this.y = y;
-  this.v = Math.floor((Math.random() * 500) + 300);
+  this.v = Enemy.getRandomVelocity();
   this.sprite = 'images/enemy-bug.png';
 };
 
+Enemy.getRandomVelocity = function getRandomVelocity() {
+  return Math.floor(Math.random() * 500) + 200;
+};
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
