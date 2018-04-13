@@ -32,13 +32,22 @@ class Player {
 
   }
   render() {
-    Player.prototype.render = function () {
       ctx.drawImage(Resources.get(this.player), this.x, this.y);
-    };
   }
 
-  handleInput() {
-
+  handleInput(key) {
+    if(key === 'right' && this.x < 405) {
+      this.x += 102;
+    }
+    if(key === 'left' && this.x > 0) {
+      this.x -= 102;
+    }
+    if(key === 'up' && this.y > 0) {
+      this.y -= 83;
+    }
+    if(key === 'down' && this.y < 405) {
+      this.y += 83;
+    }
   }
 }
 
