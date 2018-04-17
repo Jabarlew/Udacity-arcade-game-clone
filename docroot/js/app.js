@@ -9,8 +9,7 @@ var Enemy = function (x, y, v) {
 Enemy.getRandomVelocity = function getRandomVelocity() {
   return Math.floor(Math.random() * 500) + 200;
 };
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+
 Enemy.prototype.update = function (dt) {
   this.x += this.v * dt;
 
@@ -18,21 +17,24 @@ Enemy.prototype.update = function (dt) {
     this.x = -100;
     this.v = Enemy.getRandomVelocity();
   }
-
-
-  // You should multiply any movement by the dt parameter
-  // which will ensure the game runs at the same speed for
-  // all computers.
+//   if (player.x < this.x + 80 &&
+//     player.x + 80 > this.x &&
+//     player.y < this.y + 70 &&
+//     player.y + 70 > this.y) {
+//     player.x = 202;
+//     player.y = 405;
+// };
+const px = player.x;
+const py = player.y;
+getDistance(this.x, this.y, px, py);
 };
+console.log(getDistance);
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
 class Player {
   constructor(x, y) {
     this.x = x;
@@ -63,21 +65,16 @@ class Player {
 }
 
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 let allEnemies = [];
 const enemyLocationY = [63, 147, 230];
 const player = new Player(202, 410);
 enemyLocationY.forEach(locationY => {
 
- let enemy = new Enemy (0, locationY, 150);
+ let enemy = new Enemy (0, locationY, 150 ,);
   allEnemies.push(enemy);
 })
 
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function (e) {
   var allowedKeys = {
     37: 'left',
@@ -88,3 +85,10 @@ document.addEventListener('keyup', function (e) {
 
   player.handleInput(allowedKeys[e.keyCode]);
 });
+
+function getDistance(x1, y1, x2, y2) {
+  let xDistance = x2 - x1;
+  let yDistance = y2 - y1;
+
+  return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+}
