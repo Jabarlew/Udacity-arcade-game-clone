@@ -1,8 +1,9 @@
 // Enemies our player must avoid
-var Enemy = function (x, y, v) {
+var Enemy = function (x, y, v, r) {
   this.x = x;
   this.y = y;
   this.v = Enemy.getRandomVelocity();
+  this.r = 35;
   this.sprite = 'images/enemy-bug.png';
 };
 
@@ -17,18 +18,16 @@ Enemy.prototype.update = function (dt) {
     this.x = -100;
     this.v = Enemy.getRandomVelocity();
   }
-//   if (player.x < this.x + 80 &&
-//     player.x + 80 > this.x &&
-//     player.y < this.y + 70 &&
-//     player.y + 70 > this.y) {
-//     player.x = 202;
-//     player.y = 405;
-// };
-const px = player.x;
-const py = player.y;
-getDistance(this.x, this.y, px, py);
+
+getDistance(this.x, this.y, player.x, player.y);
+let collision = getDistance(this.x, this.y, player.x, player.y);
+
+if (collision < player.r + this.r) {
+  player.x = 202;
+  player.y = 405;
 };
-console.log(getDistance);
+};
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function () {
@@ -36,9 +35,10 @@ Enemy.prototype.render = function () {
 };
 
 class Player {
-  constructor(x, y) {
+  constructor(x, y, r) {
     this.x = x;
     this.y = y;
+    this.r = 35;
     this.player = 'images/char-cartman-fat.png'
   }
   update() {
@@ -70,7 +70,7 @@ const enemyLocationY = [63, 147, 230];
 const player = new Player(202, 410);
 enemyLocationY.forEach(locationY => {
 
- let enemy = new Enemy (0, locationY, 150 ,);
+ let enemy = new Enemy (0, locationY, 150);
   allEnemies.push(enemy);
 })
 
