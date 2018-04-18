@@ -19,12 +19,15 @@ Enemy.prototype.update = function (dt) {
     this.v = Enemy.getRandomVelocity();
   }
 
-  getDistance(this.x, this.y, player.x, player.y);
-  let collision = getDistance(this.x, this.y, player.x, player.y);
+  const collision = getDistance(this.x, this.y, player.x, player.y);
 
   if (collision < player.r + this.r) {
     player.x = 202;
     player.y = 405;
+    if (player.score > 0) {
+      player.score -= 100;
+    }
+    console.log(player.score)
   }
   if(player.y < 0) {
     player.x = 202;
