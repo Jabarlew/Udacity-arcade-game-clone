@@ -19,13 +19,19 @@ Enemy.prototype.update = function (dt) {
     this.v = Enemy.getRandomVelocity();
   }
 
-getDistance(this.x, this.y, player.x, player.y);
-let collision = getDistance(this.x, this.y, player.x, player.y);
+  getDistance(this.x, this.y, player.x, player.y);
+  let collision = getDistance(this.x, this.y, player.x, player.y);
 
-if (collision < player.r + this.r) {
-  player.x = 202;
-  player.y = 405;
-};
+  if (collision < player.r + this.r) {
+    player.x = 202;
+    player.y = 405;
+  }
+  if(player.y < 0) {
+    player.x = 202;
+    player.y = 405;
+    player.score += 100;
+    console.log(player.score)
+  }
 };
 
 
@@ -35,30 +41,32 @@ Enemy.prototype.render = function () {
 };
 
 class Player {
-  constructor(x, y, r) {
+  constructor(x, y, r, life, score) {
     this.x = x;
     this.y = y;
     this.r = 35;
+    this.life = 5;
+    this.score = 0;
     this.player = 'images/char-cartman-fat.png'
   }
   update() {
 
   }
   render() {
-      ctx.drawImage(Resources.get(this.player), this.x, this.y);
+    ctx.drawImage(Resources.get(this.player), this.x, this.y);
   }
 
   handleInput(key) {
-    if(key === 'right' && this.x < 405) {
+    if (key === 'right' && this.x < 405) {
       this.x += 102;
     }
-    if(key === 'left' && this.x > 0) {
+    if (key === 'left' && this.x > 0) {
       this.x -= 102;
     }
-    if(key === 'up' && this.y > 0) {
+    if (key === 'up' && this.y > 0) {
       this.y -= 83;
     }
-    if(key === 'down' && this.y < 405) {
+    if (key === 'down' && this.y < 405) {
       this.y += 83;
     }
   }
@@ -67,10 +75,10 @@ class Player {
 
 let allEnemies = [];
 const enemyLocationY = [63, 147, 230];
-const player = new Player(202, 410);
+const player = new Player(202, 410, 3, 0);
 enemyLocationY.forEach(locationY => {
 
- let enemy = new Enemy (0, locationY, 150);
+  let enemy = new Enemy(0, locationY, 150);
   allEnemies.push(enemy);
 })
 
