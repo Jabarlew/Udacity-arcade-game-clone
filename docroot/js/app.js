@@ -20,20 +20,44 @@ Enemy.prototype.update = function (dt) {
   }
 
   const collision = getDistance(this.x, this.y, player.x, player.y);
+  const heartOne = document.querySelector('.heart-one');
+  const heartTwo = document.querySelector('.heart-two');
+  const heartThree = document.querySelector('.heart-three');
+  const scoreChange = document.querySelector('.score');
+  const allHearts = document.querySelectorAll('.far');
+  scoreChange.innerHTML = `score: ${player.score}`
 
   if (collision < player.r + this.r) {
     player.x = 202;
     player.y = 405;
+    player.life -= 1;
     if (player.score > 0) {
-      player.score -= 100;
+      player.score -= 50;
     }
-    console.log(player.score)
+    if (player.life === 2) {
+      heartThree.classList.remove('fas');
+      heartThree.classList.add('far');
+    }
+    if (player.life === 1) {
+      heartTwo.classList.remove('fas');
+      heartTwo.classList.add('far');
+    }
+    if (player.life === 0) {
+      // heartOne.classList.remove('fas');
+      // heartOne.classList.add('far');
+      confirm(`your score is ${player.score}`);
+      player.life = 3;
+      player.score = 0;
+      allHearts.forEach((element) => {
+        element.classList.remove('far');
+        element.classList.add('fas');
+      });
+    }
   }
   if(player.y < 0) {
     player.x = 202;
     player.y = 405;
     player.score += 100;
-    console.log(player.score)
   }
 };
 
@@ -48,7 +72,7 @@ class Player {
     this.x = x;
     this.y = y;
     this.r = 35;
-    this.life = 5;
+    this.life = 3;
     this.score = 0;
     this.player = 'images/char-cartman-fat.png'
   }
@@ -78,7 +102,7 @@ class Player {
 
 let allEnemies = [];
 const enemyLocationY = [63, 147, 230];
-const player = new Player(202, 410, 3, 0);
+const player = new Player(202, 410);
 enemyLocationY.forEach(locationY => {
 
   let enemy = new Enemy(0, locationY, 150);
