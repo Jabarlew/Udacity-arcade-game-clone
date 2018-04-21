@@ -55,11 +55,13 @@ Enemy.prototype.update = function (dt) {
     }
   }
   if(player.y < 0) {
-    player.score += 100;
+    player.canUpdate = false;
     setTimeout(function(){
       player.x = 202;
       player.y = 405;
-    },100);
+      player.score += 100;
+      player.canUpdate = true;
+    },5000);
   }
   };
 
@@ -75,6 +77,7 @@ class Player {
     this.r = 35;
     this.life = 3;
     this.score = 0;
+    this.canUpdate = true;
     this.player = 'images/char-cartman-fat.png'
   }
   update() {
@@ -85,17 +88,19 @@ class Player {
   }
 
   handleInput(key) {
-    if (key === 'right' && this.x < 405) {
-      this.x += 102;
-    }
-    if (key === 'left' && this.x > 0) {
-      this.x -= 102;
-    }
-    if (key === 'up' && this.y > 0) {
-      this.y -= 83;
-    }
-    if (key === 'down' && this.y < 405) {
-      this.y += 83;
+    if (player.canUpdate === true) {
+      if (key === 'right' && this.x < 405) {
+        this.x += 102;
+      }
+      if (key === 'left' && this.x > 0) {
+        this.x -= 102;
+      }
+      if (key === 'up' && this.y > 0) {
+        this.y -= 83;
+      }
+      if (key === 'down' && this.y < 405) {
+        this.y += 83;
+      }
     }
   }
 }
