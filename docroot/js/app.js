@@ -52,7 +52,7 @@ Enemy.prototype.update = function (dt) {
       });
     }
   }
-  };
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function () {
@@ -70,16 +70,14 @@ class Player {
     this.player = 'images/char-cartman-fat.png'
   }
   update() {
-    if (this.canUpdate === true) {
-      if(player.y < 0) {
-        player.canUpdate = false;
-        setTimeout(function(){
-          player.x = 202;
-          player.y = 405;
-          player.score += 100;
-          player.canUpdate = true;
-        },500);
-      }
+    if (this.canUpdate === true && this.y < 0) {
+      this.canUpdate = false;
+      setTimeout(() => {
+        this.x = 202;
+        this.y = 405;
+        this.score += 100;
+        this.canUpdate = true;
+      }, 500);
     }
 
   }
@@ -106,14 +104,9 @@ class Player {
 }
 
 
-let allEnemies = [];
 const enemyLocationY = [63, 147, 230];
 const player = new Player(202, 410);
-enemyLocationY.forEach(locationY => {
-
-  let enemy = new Enemy(0, locationY, 150);
-  allEnemies.push(enemy);
-})
+const allEnemies = enemyLocationY.map(locationY => new Enemy(0, locationY, 150));
 
 
 document.addEventListener('keyup', function (e) {
