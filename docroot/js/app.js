@@ -78,7 +78,7 @@ class Player {
           player.y = 405;
           player.score += 100;
           player.canUpdate = true;
-        },1000);
+        },500);
       }
     }
 
