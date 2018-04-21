@@ -15,7 +15,9 @@ body {
   font-size: 12px;
 }
 h1 {
-  /* margin-left: 10%;
-  margin-right: 17%; */
   margin-bottom: -40px;
+}
+
+.life i {
+  color: red;
 }

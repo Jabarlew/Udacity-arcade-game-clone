@@ -55,12 +55,13 @@ Enemy.prototype.update = function (dt) {
     }
   }
   if(player.y < 0) {
-    player.x = 202;
-    player.y = 405;
     player.score += 100;
+    setTimeout(function(){
+      player.x = 202;
+      player.y = 405;
+    },100);
   }
-};
-
+  };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function () {
