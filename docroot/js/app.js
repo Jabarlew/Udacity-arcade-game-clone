@@ -25,7 +25,7 @@ Enemy.prototype.update = function (dt) {
   const heartThree = document.querySelector('.heart-three');
   const scoreChange = document.querySelector('.score');
   const allHearts = document.querySelectorAll('.far');
-  scoreChange.innerHTML = `score: ${player.score}`
+  scoreChange.innerHTML = `score: ${player.score}`;
 
   if (collision < player.r + this.r) {
     player.x = 202;
