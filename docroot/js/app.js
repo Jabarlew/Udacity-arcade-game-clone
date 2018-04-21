@@ -35,12 +35,10 @@ Enemy.prototype.update = function (dt) {
       player.score -= 50;
     }
     if (player.life === 2) {
-      heartThree.classList.remove('fas');
-      heartThree.classList.add('far');
+      heartThree.classList.replace('fas', 'far');
     }
     if (player.life === 1) {
-      heartTwo.classList.remove('fas');
-      heartTwo.classList.add('far');
+      heartTwo.classList.replace('fas', 'far');
     }
     if (player.life === 0) {
       // heartOne.classList.remove('fas');
@@ -53,15 +51,6 @@ Enemy.prototype.update = function (dt) {
         element.classList.add('fas');
       });
     }
-  }
-  if(player.y < 0) {
-    player.canUpdate = false;
-    setTimeout(function(){
-      player.x = 202;
-      player.y = 405;
-      player.score += 100;
-      player.canUpdate = true;
-    },5000);
   }
   };
 
@@ -81,6 +70,17 @@ class Player {
     this.player = 'images/char-cartman-fat.png'
   }
   update() {
+    if (this.canUpdate === true) {
+      if(player.y < 0) {
+        player.canUpdate = false;
+        setTimeout(function(){
+          player.x = 202;
+          player.y = 405;
+          player.score += 100;
+          player.canUpdate = true;
+        },1000);
+      }
+    }
 
   }
   render() {
