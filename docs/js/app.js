@@ -6,11 +6,11 @@ var Enemy = function (x, y, v, r) {
   this.r = 35;
   this.sprite = 'images/enemy-bug.png';
 };
-
+// enemy move with random speed
 Enemy.getRandomVelocity = function getRandomVelocity() {
   return Math.floor(Math.random() * 500) + 200;
 };
-
+// used dt so game works smooth on every computer
 Enemy.prototype.update = function (dt) {
   this.x += this.v * dt;
 
@@ -26,7 +26,7 @@ Enemy.prototype.update = function (dt) {
   const scoreChange = document.querySelector('.score');
   const allHearts = document.querySelectorAll('.far');
   scoreChange.innerHTML = `score: ${player.score}`;
-
+  // action on collision
   if (collision < player.r + this.r) {
     player.x = 202;
     player.y = 405;
@@ -58,7 +58,7 @@ Enemy.prototype.update = function (dt) {
 Enemy.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
+// player class
 class Player {
   constructor(x, y, r, life, score) {
     this.x = x;
@@ -69,6 +69,7 @@ class Player {
     this.canUpdate = true;
     this.player = 'images/char-cartman-fat.png'
   }
+  // allow player to move and set timeout when player is on the water blocks
   update() {
     if (this.canUpdate === true && this.y < 0) {
       this.canUpdate = false;
@@ -81,10 +82,11 @@ class Player {
     }
 
   }
+  // shows player on the screen
   render() {
     ctx.drawImage(Resources.get(this.player), this.x, this.y);
   }
-
+  // player move on button press
   handleInput(key) {
     if (player.canUpdate === true) {
       if (key === 'right' && this.x < 405) {
@@ -106,6 +108,7 @@ class Player {
 
 const enemyLocationY = [63, 147, 230];
 const player = new Player(202, 410);
+// creates enemies on right y positions using map
 const allEnemies = enemyLocationY.map(locationY => new Enemy(0, locationY, 150));
 
 
@@ -119,7 +122,7 @@ document.addEventListener('keyup', function (e) {
 
   player.handleInput(allowedKeys[e.keyCode]);
 });
-
+// function that checks if player collide with enemy
 function getDistance(x1, y1, x2, y2) {
   let xDistance = x2 - x1;
   let yDistance = y2 - y1;
